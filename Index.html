@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="script.js"></script>
+    <title>CRUD Application with JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #ccf4f4;
+           background-image: url('background.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+         input[type="text"]:focus, input[type="number"]:focus {
+            background-color: #D8F09E; /* here, Change background color when focused */
+        }
+
+        button, input[type="submit"] {
+            cursor: pointer; /* here, Change cursor to pointer for buttons */
+            padding: 5px 10px;
+            margin: 5px;
+        }
+         table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #FAEBD7; /* here, Transparent background for readabile */
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            color: #9ACD32;
+        }
+        button {
+            padding: 5px 10px;
+            margin: 5px;
+        }
+         button:hover{
+            background-color: darkred;
+            color: ghostwhite;
+            border: 1px solid red;
+            border-radius: 20px;
+         }
+    </style>
+</head>
+<body>
+    
+    <h1>CRUD Application - User Management</h1>
+    
+    <h2>Add User</h2>
+    <form id="userForm">
+        <input type="hidden" id="userId">
+        <label for="username">Name: </label>
+        <input type="text" id="username" required placeholder="Type your name!">
+
+        <label for="age">Age: </label>
+        <input type="number" id="age" required min="18" max="50">
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>User List</h2>
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script src="script.js"></script>
+</body>
+</html>
