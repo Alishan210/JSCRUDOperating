@@ -6,47 +6,47 @@ document.getElementById('userForm').addEventListener('submit', function(e) {
 
     const usernameInput = document.getElementById('username');
     const ageInput = document.getElementById('age');
+    const statusInput = document.getElementById('status');
     const userIdInput = document.getElementById('userId');
 
     const username = usernameInput.value.trim();
     const age = parseInt(ageInput.value);
+    const status = statusInput.value;
 
     if (!username) return;
 
     // here, Age validition check : must be between 18 and 50
-    if (age < 18 || age > 50) {
-        alert('Age must be between 18 and 50');
+    if (age < 100 || age > 1000000) {
+        alert('Age must be between 100 and 1000000');
         return;
     }
 
     if (userIdInput.value) {
         // Update user
         const id = parseInt(userIdInput.value);
-        updateUser(id, username, age);
+        updateUser(id, username, age, status);
     } else {
         // Create new user
-        createUser(username, age);
+        createUser(username, age, status);
     }
 
     usernameInput.value = '';
     ageInput.value = '';
+    statusInput.value = 'Pending'; //here, Default back to "Pending"
     userIdInput.value = '';
 });
 
-function createUser(name, age) {
-    users.push({ id: userId++, name, age });
+function createUser(name, age, status) {
+    users.push({ id: userId++, name, age, status });
     renderUserTable();
 }
 
-function readUsers() {
-    return users;
-}
-
-function updateUser(id, name, age) {
+function updateUser(id, name, age, status) {
     const user = users.find(user => user.id === id);
     if (user) {
         user.name = name;
         user.age = age;
+        user.status = status;
         renderUserTable();
     }
 }
@@ -61,6 +61,7 @@ function editUser(id) {
     if (user) {
         document.getElementById('username').value = user.name;
         document.getElementById('age').value = user.age;
+        document.getElementById('status').value = user.status;
         document.getElementById('userId').value = user.id;
     }
 }
@@ -76,6 +77,7 @@ function renderUserTable() {
             <td>${user.id}</td>
             <td>${user.name}</td>
             <td>${user.age}</td>
+            <td>${user.status}</td>
             <td>
                 <button onclick="editUser(${user.id})">Edit</button>
                 <button onclick="deleteUser(${user.id})">Delete</button>
